@@ -3,11 +3,7 @@
 algo::BaseAlgo::BaseAlgo(std::string s, std::string n){
     name = n;
     check::exception_checker::check_judge_value(s);
-    if (name.compare("prim") == 0){
-        if (s.compare("directed") == 0){
-            throw std::runtime_error("Invalid value please use undirected only for prim and kruskal");
-        }
-    }
+    check::exception_checker::check_special_judge_value(s,n);
     judge = s;
 }
 

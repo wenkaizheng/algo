@@ -8,7 +8,8 @@ int algo::Prim::get_mst_value() {
     return mst_wt;
 }
 
-std::vector<std::shared_ptr<data_struct::Edge>> algo::Prim::generate_mst(std::shared_ptr <data_struct::Node> src){
+std::vector<std::shared_ptr<data_struct::Edge>> algo::Prim::generate_mst(){
+    std::shared_ptr <data_struct::Node> src = node_list[0];
     std::map<std::shared_ptr<data_struct::Node>,bool> visited;
     std::map<std::shared_ptr<data_struct::Node>,int> dist;
     typedef std::pair<int, std::shared_ptr<data_struct::Node>> my_pair;
@@ -18,7 +19,7 @@ std::vector<std::shared_ptr<data_struct::Edge>> algo::Prim::generate_mst(std::sh
         }
     };
     std::priority_queue< my_pair, std::vector<my_pair>, my_comparator >pq;
-    for (std::shared_ptr<data_struct::Node> node : this->node_list){
+    for (std::shared_ptr<data_struct::Node> node : node_list){
         visited[node] = false;
         dist[node] = int_max;
     }
@@ -44,7 +45,7 @@ std::vector<std::shared_ptr<data_struct::Edge>> algo::Prim::generate_mst(std::sh
         }
     }
     std::vector<std::shared_ptr<data_struct::Edge>> rv;
-    for (std::shared_ptr<data_struct::Node> node : this->node_list){
+    for (std::shared_ptr<data_struct::Node> node : node_list){
         if (node->get_prev()){
             std::shared_ptr<data_struct::Edge> e(new data_struct::Edge(node->get_prev(),node,dist[node]));
             rv.push_back(e);

@@ -22,6 +22,13 @@ namespace check{
                 throw std::runtime_error("Invalid value please use undirected or directed");
             }
         }
+        static void check_special_judge_value(std::string judge,std::string name){
+            if (judge.compare("directed") == 0){
+                if (name.compare("prim") == 0 or name.compare("kruskal") == 0 ){
+                    throw std::runtime_error("Invalid value please use undirected for prim and kruskal");
+                }
+            }
+        }
     };
 }
 namespace data_struct{
@@ -148,7 +155,7 @@ namespace algo{
     public:
         Prim(std::string s);
         int get_mst_value();
-        std::vector<std::shared_ptr<data_struct::Edge>> generate_mst(std::shared_ptr<data_struct::Node> src);
+        std::vector<std::shared_ptr<data_struct::Edge>> generate_mst();
     private:
         int mst_wt;
     };
@@ -158,7 +165,7 @@ namespace algo{
         Kruskal(std::string s);
         int get_mst_value();
         std::shared_ptr<data_struct::Node> get_ancestor(std::shared_ptr<data_struct::Node> node);
-        std::vector<std::shared_ptr<data_struct::Edge>> generate_mst(std::shared_ptr<data_struct::Node> src);
+        std::vector<std::shared_ptr<data_struct::Edge>> generate_mst();
 
     private:
         int mst_wt;

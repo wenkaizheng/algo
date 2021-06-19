@@ -266,7 +266,7 @@ int main(){
     p->add_edge(Edge9);
     p->add_edge(Edge10);
 
-    std::vector<edge_ptr> rv = p->generate_mst(A);
+    std::vector<edge_ptr> rv = p->generate_mst();
     std::cout << p->get_mst_value() << std::endl;
     for(edge_ptr e: rv){
         std::cout<< e;
@@ -298,7 +298,7 @@ int main(){
     k1->add_edge(Edge9);
     k1->add_edge(Edge10);
 
-    std::vector<edge_ptr> rv1 = k1->generate_mst(A);
+    std::vector<edge_ptr> rv1 = k1->generate_mst();
     std::cout << k1->get_mst_value() << std::endl;
     for(edge_ptr e: rv1){
         std::cout<< e;
