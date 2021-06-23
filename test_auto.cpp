@@ -34,7 +34,7 @@ int main(){
     }catch (std::exception& e){
         std::cout << "Standard exception: " << e.what() << std::endl;
     }
-    std::shared_ptr<algo::Dijkstra> d(new algo::Dijkstra("undirected"));
+    std::shared_ptr<algo::Dijkstra> d(new algo::Dijkstra(UNDIRECTED));
     d->add_edge(e0);
     d->add_edge(e1);
     d->add_edge(e2);
@@ -51,7 +51,7 @@ int main(){
     std::cout << a3->get_prev() << std::endl;
     std::cout << a4->get_prev() << std::endl;
 
-    d->set_judge("directed");
+    d->set_judge(DIRECTED);
 
     path = d->shortest_path(a0,a2);
 
@@ -65,7 +65,7 @@ int main(){
 
 
 
-    std::shared_ptr<algo::BellManFord> b (new algo::BellManFord("undirected"));
+    std::shared_ptr<algo::BellManFord> b (new algo::BellManFord(UNDIRECTED));
     b->add_edge(e0);
     b->add_edge(e1);
     b->add_edge(e2);
@@ -83,7 +83,7 @@ int main(){
     std::cout << a3->get_prev() << std::endl;
     std::cout << a4->get_prev() << std::endl;
 
-    b->set_judge("directed");
+    b->set_judge(DIRECTED);
 
     path1 = b->shortest_path(a0,a2);
 
@@ -98,7 +98,7 @@ int main(){
 
 
 
-    std::shared_ptr<algo::BellManFord> b1 (new algo::BellManFord("directed"));
+    std::shared_ptr<algo::BellManFord> b1 (new algo::BellManFord(DIRECTED));
     b1->add_edge(e11);
     b1->add_edge(e12);
     b1->add_edge(e13);
@@ -111,7 +111,7 @@ int main(){
     std::cout << a6->get_prev() << std::endl;
     std::cout << a7->get_prev() << std::endl;
     try {
-        std::shared_ptr <algo::BellManFord> b1e(new algo::BellManFord("undirected"));
+        std::shared_ptr <algo::BellManFord> b1e(new algo::BellManFord(UNDIRECTED));
         b1e->add_edge(e11);
         b1e->add_edge(e12);
         b1e->add_edge(e13);
@@ -120,7 +120,7 @@ int main(){
     }
 
 
-    std::shared_ptr<algo::KSP> k(new algo::KSP("undirected"));
+    std::shared_ptr<algo::KSP> k(new algo::KSP(UNDIRECTED));
     k->add_edge(e0);
     k->add_edge(e1);
     k->add_edge(e2);
@@ -138,7 +138,7 @@ int main(){
     std::cout << a3->get_prev() << std::endl;
     std::cout << a4->get_prev() << std::endl;
 
-    k->set_judge("directed");
+    k->set_judge(DIRECTED);
     path_list = k->k_shortest_path(a0,a2,5);
     for(path_ptr p: path_list){
         std::cout << p << std::endl;
@@ -151,7 +151,7 @@ int main(){
     std::cout << a4->get_prev() << std::endl;
 
 
-    std::shared_ptr<algo::FindCycle> f (new algo::FindCycle("directed"));
+    std::shared_ptr<algo::FindCycle> f (new algo::FindCycle(DIRECTED));
     f->add_edge(e0);
     f->add_edge(e6);
     f->add_edge(e5);
@@ -167,7 +167,7 @@ int main(){
     std::cout << a3->get_prev() << std::endl;
     std::cout << a4->get_prev() << std::endl;
 
-    std::shared_ptr<algo::FindCycle> fd (new algo::FindCycle("directed"));
+    std::shared_ptr<algo::FindCycle> fd (new algo::FindCycle(DIRECTED));
     fd->add_edge(e0);
     fd->add_edge(e1);
     fd->add_edge(e2);
@@ -182,9 +182,9 @@ int main(){
     std::cout << a3->get_prev() << std::endl;
     std::cout << a4->get_prev() << std::endl;
 
-    fd->set_judge("undirected");
+    fd->set_judge(UNDIRECTED);
     std::cout << fd->exist_cycle() <<std::endl;
-    std::cout << "directed graph for undirected graph cycle detection2 done\n";
+    std::cout << "directed graph construction for undirected graph cycle detection2 done\n";
     std::cout << a0->get_prev() << std::endl;
     std::cout << a1->get_prev() << std::endl;
     std::cout << a2->get_prev() << std::endl;
@@ -192,9 +192,9 @@ int main(){
     std::cout << a4->get_prev() << std::endl;
 
 
-    fd->set_judge("directed");
+    fd->set_judge(DIRECTED);
     std::cout << fd->exist_cycle() <<std::endl;
-    std::cout << "undirected graph for directed graph cycle detection2 done\n";
+    std::cout << "undirected graph construction for directed graph cycle detection2 done\n";
     std::cout << a0->get_prev() << std::endl;
     std::cout << a1->get_prev() << std::endl;
     std::cout << a2->get_prev() << std::endl;
@@ -203,7 +203,7 @@ int main(){
 
 
 
-    std::shared_ptr<algo::FindCycle> f1 (new algo::FindCycle("undirected"));
+    std::shared_ptr<algo::FindCycle> f1 (new algo::FindCycle(UNDIRECTED));
     f1->add_edge(e0);
     f1->add_edge(e6);
     f1->add_edge(e4);
@@ -217,7 +217,7 @@ int main(){
     std::cout << a3->get_prev() << std::endl;
     std::cout << a4->get_prev() << std::endl;
 
-    std::shared_ptr<algo::FindCycle> fd1 (new algo::FindCycle("undirected"));
+    std::shared_ptr<algo::FindCycle> fd1 (new algo::FindCycle(UNDIRECTED));
     fd1->add_edge(e0);
     fd1->add_edge(e1);
     fd1->add_edge(e4);
@@ -248,9 +248,9 @@ int main(){
     edge_ptr Edge9(new data_struct::Edge(E,G,9));
     edge_ptr Edge10(new data_struct::Edge(F,G,11));
 
-    std::shared_ptr<algo::Prim> p(new algo::Prim("undirected"));
+    std::shared_ptr<algo::Prim> p(new algo::Prim(UNDIRECTED));
     try{
-        std::shared_ptr<algo::Prim> pe(new algo::Prim("directed"));
+        std::shared_ptr<algo::Prim> pe(new algo::Prim(DIRECTED));
     }catch (std::exception& e){
         std::cout << "Standard exception: " << e.what() << std::endl;
     }
@@ -280,9 +280,9 @@ int main(){
     std::cout << F->get_prev() << std::endl;
     std::cout << G->get_prev() << std::endl;
 
-    std::shared_ptr<algo::Kruskal> k1(new algo::Kruskal("undirected"));
+    std::shared_ptr<algo::Kruskal> k1(new algo::Kruskal(UNDIRECTED));
     try{
-        std::shared_ptr<algo::Kruskal> k1e(new algo::Kruskal("directed"));
+        std::shared_ptr<algo::Kruskal> k1e(new algo::Kruskal(DIRECTED));
     }catch (std::exception& e){
         std::cout << "Standard exception: " << e.what() << std::endl;
     }

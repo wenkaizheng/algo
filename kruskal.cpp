@@ -1,6 +1,6 @@
 #include "graph_algo.hpp"
 
-algo::Kruskal::Kruskal(std::string s):BaseAlgo2(s,"kruskal"){
+algo::Kruskal::Kruskal(std::string s):BaseAlgo2(s,KRUSKAL){
     mst_wt = 0;
 }
 

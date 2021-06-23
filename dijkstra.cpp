@@ -1,6 +1,6 @@
 #include "graph_algo.hpp"
 
-algo::Dijkstra::Dijkstra(std::string s):BaseAlgo(s,"dijkstra") {}
+algo::Dijkstra::Dijkstra(std::string s):BaseAlgo(s,DIJKSTRA) {}
 
 std::shared_ptr<data_struct::Path> algo::Dijkstra::shortest_path(std::shared_ptr <data_struct::Node> src,
                                                                  std::shared_ptr <data_struct::Node> dst) {
@@ -26,7 +26,7 @@ std::shared_ptr<data_struct::Path> algo::Dijkstra::shortest_path(std::shared_ptr
         }
         typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
         std::map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> loop_map;
-        if(judge.compare("directed") == 0){
+        if(judge.compare(DIRECTED) == 0){
             loop_map = directed_adj_list;
         }else{
             loop_map = undirected_adj_list;

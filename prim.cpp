@@ -1,6 +1,6 @@
 #include "graph_algo.hpp"
 
-algo::Prim::Prim(std::string s):BaseAlgo(s,"prim"){
+algo::Prim::Prim(std::string s):BaseAlgo(s,PRIM){
     mst_wt = 0;
 }
 

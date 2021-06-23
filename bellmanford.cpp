@@ -1,6 +1,6 @@
 #include "graph_algo.hpp"
 
-algo::BellManFord::BellManFord(std::string s):BaseAlgo2(s,"bellmanford"){
+algo::BellManFord::BellManFord(std::string s):BaseAlgo2(s,BELLMANFORD){
     cycle = false;
 }
 
@@ -17,7 +17,7 @@ std::shared_ptr<data_struct::Path> algo::BellManFord::shortest_path(std::shared_
     dist[src] = 0;
     int num_edge;
     std::vector<std::shared_ptr<data_struct::Edge>> edge_object_lists;
-    if(judge.compare("directed") == 0){
+    if(judge.compare(DIRECTED) == 0){
         num_edge = directed_edge_num;
         edge_object_lists = directed_edge_list;
     }else{

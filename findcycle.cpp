@@ -1,6 +1,6 @@
 #include "graph_algo.hpp"
 
-algo::FindCycle::FindCycle(std::string s):BaseAlgo(s,"find_cycle") {}
+algo::FindCycle::FindCycle(std::string s):BaseAlgo(s,FINDCYCLE) {}
 
 bool algo::FindCycle::check_cycle_directed() {
     std::map<std::shared_ptr<data_struct::Node>,bool> visited;

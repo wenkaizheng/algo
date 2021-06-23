@@ -9,26 +9,19 @@
 #include <deque>
 #include <memory>
 #define int_max 0x7fffffff
-
+extern std::string DIRECTED;
+extern std::string UNDIRECTED;
+extern std::string DIJKSTRA;
+extern std::string BELLMANFORD;
+extern std::string KSP;
+extern std::string FINDCYCLE;
+extern std::string PRIM;
+extern std::string KRUSKAL;
 namespace check{
     class exception_checker{
     public:
-        static void check_judge_value(std::string judge){
-            if (judge.compare("undirected") == 0){
-                return;
-            }else if (judge.compare("directed") == 0){
-                return;
-            }else{
-                throw std::runtime_error("Invalid value please use undirected or directed");
-            }
-        }
-        static void check_special_judge_value(std::string judge,std::string name){
-            if (judge.compare("directed") == 0){
-                if (name.compare("prim") == 0 or name.compare("kruskal") == 0 ){
-                    throw std::runtime_error("Invalid value please use undirected for prim and kruskal");
-                }
-            }
-        }
+        static void check_judge_value(std::string judge);
+        static void check_special_judge_value(std::string judge,std::string name);
     };
 }
 namespace data_struct{
@@ -151,7 +144,7 @@ namespace algo{
 
     };
 
-    class Prim:public algo::BaseAlgo{
+    class Prim:public BaseAlgo{
     public:
         Prim(std::string s);
         int get_mst_value();

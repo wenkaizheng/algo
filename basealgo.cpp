@@ -13,6 +13,7 @@ void algo::BaseAlgo::reset(){
     }
 }
 void algo::BaseAlgo::set_judge(std::string j) {
+    check::exception_checker::check_judge_value(j);
     judge = j;
 }
 void algo::BaseAlgo::add_edge(std::shared_ptr <data_struct::Edge> edge){
