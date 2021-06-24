@@ -3,8 +3,8 @@
 algo::FindCycle::FindCycle(std::string s):BaseAlgo(s,FINDCYCLE) {}
 
 bool algo::FindCycle::check_cycle_directed() {
-    std::map<std::shared_ptr<data_struct::Node>,bool> visited;
-    std::map<std::shared_ptr<data_struct::Node>,bool> rec_stack;
+    std::unordered_map<std::shared_ptr<data_struct::Node>,bool> visited;
+    std::unordered_map<std::shared_ptr<data_struct::Node>,bool> rec_stack;
     for (std::shared_ptr<data_struct::Node> node : this->node_list){
         visited[node] = false;
         rec_stack[node] = false;
@@ -20,8 +20,8 @@ bool algo::FindCycle::check_cycle_directed() {
 }
 
 bool algo::FindCycle::check_cycle_directed(std::shared_ptr <data_struct::Node> node,
-                                           std::map<std::shared_ptr<data_struct::Node>, bool> &visited,
-                                           std::map<std::shared_ptr<data_struct::Node>, bool> &rec_stack) {
+                                           std::unordered_map<std::shared_ptr<data_struct::Node>, bool> &visited,
+                                           std::unordered_map<std::shared_ptr<data_struct::Node>, bool> &rec_stack) {
     visited[node] = true;
     rec_stack[node] = true;
     typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
@@ -41,7 +41,7 @@ bool algo::FindCycle::check_cycle_directed(std::shared_ptr <data_struct::Node> n
 }
 
 bool algo::FindCycle::check_cycle_undirected(){
-    std::map<std::shared_ptr<data_struct::Node>,bool> visited;
+    std::unordered_map<std::shared_ptr<data_struct::Node>,bool> visited;
     for (std::shared_ptr<data_struct::Node> node : this->node_list){
         visited[node] = false;
     }
@@ -56,7 +56,7 @@ bool algo::FindCycle::check_cycle_undirected(){
 }
 
 bool algo::FindCycle::check_cycle_undirected(std::shared_ptr <data_struct::Node> node,
-                                             std::map<std::shared_ptr<data_struct::Node>, bool> &visited,
+                                             std::unordered_map<std::shared_ptr<data_struct::Node>, bool> &visited,
                                              std::shared_ptr <data_struct::Node> parent){
     visited[node] = true;
     typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;

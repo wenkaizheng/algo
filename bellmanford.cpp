@@ -10,7 +10,7 @@ bool algo::BellManFord::cycle_exist() {
 
 std::shared_ptr<data_struct::Path> algo::BellManFord::shortest_path(std::shared_ptr <data_struct::Node> src,
                                                                     std::shared_ptr <data_struct::Node> dst) {
-    std::map<std::shared_ptr<data_struct::Node>,int> dist;
+    std::unordered_map<std::shared_ptr<data_struct::Node>,int> dist;
     for (std::shared_ptr<data_struct::Node> node : this->node_list){
         dist[node] = int_max;
     }

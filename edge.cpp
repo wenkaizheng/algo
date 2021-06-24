@@ -6,7 +6,7 @@ data_struct::Edge::Edge(std::shared_ptr <data_struct::Node> src, std::shared_ptr
     weight = w;
 }
 
-int data_struct::Edge::get_value(){
+int data_struct::Edge::get_value()const{
     return weight;
 }
 

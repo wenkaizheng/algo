@@ -7,12 +7,12 @@ std::shared_ptr<data_struct::Path> algo::Dijkstra::shortest_path(std::shared_ptr
     // cost and next hop will be stored in the min heap
     typedef std::pair<int, std::shared_ptr<data_struct::Node>> my_pair;
     struct my_comparator{
-        bool operator() (const my_pair& p1, const my_pair& p2){
+        bool operator() (const std::pair<int, std::shared_ptr<const data_struct::Node>>& p1, const std::pair<int, std::shared_ptr<const data_struct::Node>>& p2){
             return  p1.first > p2.first;
         }
     };
     std::priority_queue< my_pair, std::vector<my_pair>, my_comparator >pq;
-    std::map<std::shared_ptr<data_struct::Node>,int> dist;
+    std::unordered_map<std::shared_ptr<data_struct::Node>,int> dist;
     pq.push(std::make_pair(0, src));
     for (std::shared_ptr<data_struct::Node> node : this->node_list){
         dist[node] = int_max;
@@ -25,7 +25,7 @@ std::shared_ptr<data_struct::Path> algo::Dijkstra::shortest_path(std::shared_ptr
             break;
         }
         typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
-        std::map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> loop_map;
+        std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> loop_map;
         if(judge.compare(DIRECTED) == 0){
             loop_map = directed_adj_list;
         }else{

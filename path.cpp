@@ -17,7 +17,7 @@ void data_struct::Path::set_total(int t){
     total = t;
 }
 
-int data_struct::Path::get_total(){
+int data_struct::Path::get_total()const{
     return total;
 }
 

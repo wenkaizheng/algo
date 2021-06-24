@@ -21,7 +21,7 @@ std::vector<std::shared_ptr<data_struct::Path>> algo::KSP::k_shortest_path(std::
                                                                            int k) {
     std::vector<std::shared_ptr<data_struct::Path>> rv;
     struct my_comparator{
-        bool operator() (std::shared_ptr<data_struct::Path> const &p1, std::shared_ptr<data_struct::Path> const &p2){
+        bool operator() (const std::shared_ptr<const data_struct::Path> & p1, const std::shared_ptr<const data_struct::Path>& p2){
             return  p1->get_total() > p2->get_total();
         }
     };
@@ -48,7 +48,7 @@ std::vector<std::shared_ptr<data_struct::Path>> algo::KSP::k_shortest_path(std::
             }
         }
         typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
-        std::map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> adj_list;
+        std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> adj_list;
         if (judge.compare(DIRECTED) == 0){
             adj_list = directed_adj_list;
         }else{

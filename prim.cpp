@@ -10,11 +10,11 @@ int algo::Prim::get_mst_value() {
 
 std::vector<std::shared_ptr<data_struct::Edge>> algo::Prim::generate_mst(){
     std::shared_ptr <data_struct::Node> src = node_list[0];
-    std::map<std::shared_ptr<data_struct::Node>,bool> visited;
-    std::map<std::shared_ptr<data_struct::Node>,int> dist;
+    std::unordered_map<std::shared_ptr<data_struct::Node>,bool> visited;
+    std::unordered_map<std::shared_ptr<data_struct::Node>,int> dist;
     typedef std::pair<int, std::shared_ptr<data_struct::Node>> my_pair;
     struct my_comparator{
-        bool operator() (const my_pair& p1, const my_pair& p2){
+        bool operator() (const std::pair<int, std::shared_ptr<const data_struct::Node>>& p1, const std::pair<int, std::shared_ptr<const data_struct::Node>>& p2){
             return  p1.first > p2.first;
         }
     };

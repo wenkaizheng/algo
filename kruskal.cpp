@@ -17,7 +17,7 @@ std::shared_ptr<data_struct::Node> algo::Kruskal::get_ancestor(std::shared_ptr <
 
 std::vector<std::shared_ptr<data_struct::Edge>> algo::Kruskal::generate_mst(){
     struct my_comparator{
-        bool operator()(const std::shared_ptr<data_struct::Edge>& e1,const std::shared_ptr<data_struct::Edge>& e2 ){
+        bool operator()(const std::shared_ptr<const data_struct::Edge>& e1,const std::shared_ptr<const data_struct::Edge>& e2 ){
             return e1->get_value() < e2->get_value();
         }
     };

@@ -2,7 +2,7 @@
 #define ALGO
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <utility>
 #include <queue>
 #include <algorithm>
@@ -48,7 +48,7 @@ namespace data_struct{
     public:
         Edge(std::shared_ptr<data_struct::Node> src, std::shared_ptr<data_struct::Node> dst, int w);
         void set_value(int w);
-        int get_value();
+        int get_value()const;
         std::shared_ptr<data_struct::Node> get_src();
         std::shared_ptr<data_struct::Node> get_dst();
         friend std::ostream& operator<<(std::ostream &strm, const std::shared_ptr<data_struct::Edge> n);
@@ -66,7 +66,7 @@ namespace data_struct{
         Path(std::shared_ptr<data_struct::Node> node, int t);
         void set_total(int t);
         std::shared_ptr<data_struct::Node> get_last_one();
-        int get_total();
+        int get_total()const;
         std::vector<std::shared_ptr<data_struct::Node>> get_path_list();
         friend std::ostream& operator<<(std::ostream &strm, const std::shared_ptr<data_struct::Path> p);
     };
@@ -79,8 +79,8 @@ namespace algo{
         void add_edge(std::shared_ptr<data_struct::Edge> edge);
         void set_judge(std::string j);
         void reset();
-        std::map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> directed_adj_list;
-        std::map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> undirected_adj_list;
+        std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> directed_adj_list;
+        std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> undirected_adj_list;
         std::vector<std::shared_ptr<data_struct::Node>> node_list;
         std::string judge;
         std::string name;
@@ -126,8 +126,8 @@ namespace algo{
         std::vector<std::shared_ptr<data_struct::Path>>k_shortest_path(std::shared_ptr<data_struct::Node> src, std::shared_ptr<data_struct::Node> dst, int k);
         void set_judge(std::string j);
     private:
-        std::map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> directed_adj_list;
-        std::map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> undirected_adj_list;
+        std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> directed_adj_list;
+        std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> undirected_adj_list;
         std::string judge;
     };
 
@@ -135,10 +135,10 @@ namespace algo{
     public:
         FindCycle(std::string s);
         //dfs check function
-        bool check_cycle_directed(std::shared_ptr<data_struct::Node> node,std::map<std::shared_ptr<data_struct::Node>,bool>& visited, std::map<std::shared_ptr<data_struct::Node>,bool>& rec_stack);
+        bool check_cycle_directed(std::shared_ptr<data_struct::Node> node,std::unordered_map<std::shared_ptr<data_struct::Node>,bool>& visited, std::unordered_map<std::shared_ptr<data_struct::Node>,bool>& rec_stack);
         bool check_cycle_directed();
         // dfs check
-        bool check_cycle_undirected(std::shared_ptr<data_struct::Node> node,std::map<std::shared_ptr<data_struct::Node>,bool>& visited,std::shared_ptr<data_struct::Node> parent );
+        bool check_cycle_undirected(std::shared_ptr<data_struct::Node> node,std::unordered_map<std::shared_ptr<data_struct::Node>,bool>& visited,std::shared_ptr<data_struct::Node> parent );
         bool check_cycle_undirected();
         bool exist_cycle();
 

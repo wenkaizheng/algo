@@ -1,7 +1,7 @@
 VER = -std=c++11
 SRCS := $(wildcard *.cpp)
 OBJS := $(SRCS:cpp=o)
-algo.a:	$(OBJS)
+algo.a:	Makefile $(OBJS)
 	ar -c -r -s algo.a *.o
 
 %.o: %.cpp graph_algo.hpp
