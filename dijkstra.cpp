@@ -25,13 +25,13 @@ std::shared_ptr<data_struct::Path> algo::Dijkstra::shortest_path(std::shared_ptr
             break;
         }
         typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
-        std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> loop_map;
+        std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> adj_list;
         if(judge.compare(DIRECTED) == 0){
-            loop_map = directed_adj_list;
+            adj_list = directed_adj_list;
         }else{
-            loop_map = undirected_adj_list;
+            adj_list = undirected_adj_list;
         }
-        for (i = loop_map[s].begin(); i != loop_map[s].end(); ++i)
+        for (i = adj_list[s].begin(); i != adj_list[s].end(); ++i)
         {
             std::shared_ptr<data_struct::Node> d = i->first;
             int weight = i->second;

@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <deque>
 #include <memory>
+#include<queue>
 #define int_max 0x7fffffff
 extern std::string DIRECTED;
 extern std::string UNDIRECTED;
@@ -17,6 +18,7 @@ extern std::string KSP;
 extern std::string FINDCYCLE;
 extern std::string PRIM;
 extern std::string KRUSKAL;
+extern std::string EDMONDSKARP;
 namespace check{
     class exception_checker{
     public:
@@ -162,6 +164,34 @@ namespace algo{
 
     private:
         int mst_wt;
+    };
+
+    struct MaxFlowEdgeObject{
+        int weight;
+        int unchanged_weight;
+        bool undo;
+        MaxFlowEdgeObject(){};
+        MaxFlowEdgeObject(int w, int uw, bool u);
+    };
+
+    class EdmondsKarp{
+    public:
+        EdmondsKarp(std::string s);
+        void set_judge(std::string j);
+        void reset();
+        void add_edge(std::shared_ptr<data_struct::Edge> edge);
+        int get_max_flow();
+        std::vector<std::shared_ptr<data_struct::Edge>> generate_max_flow(std::shared_ptr<data_struct::Node> src, std::shared_ptr<data_struct::Node> dst);
+        bool bfs(std::shared_ptr <data_struct::Node> src,
+                 std::shared_ptr <data_struct::Node> dst);
+    private:
+        int max_flow;
+        std::string judge;
+        std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>> directed_adj_list;
+        std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>> undirected_adj_list;
+        std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>> directed_adj_list_copy;
+        std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>> undirected_adj_list_copy;
+        std::vector<std::shared_ptr<data_struct::Node>> node_list;
     };
 
 }

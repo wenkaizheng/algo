@@ -8,7 +8,7 @@ std::string KSP = "ksp";
 std::string FINDCYCLE = "find_cycle";
 std::string PRIM = "prim";
 std::string KRUSKAL = "kruskal";
-
+std::string EDMONDSKARP = "enmondskarp";
 void check::exception_checker::check_special_judge_value(std::string judge, std::string name) {
     if (judge.compare(DIRECTED) == 0){
         if (name.compare(PRIM) == 0 or name.compare(KRUSKAL) == 0 ){

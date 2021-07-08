@@ -7,8 +7,9 @@ int main(){
     node_ptr a2(new data_struct::Node("2"));
     node_ptr a3(new data_struct::Node("3"));
     node_ptr a4(new data_struct::Node("4"));
+    node_ptr a5(new data_struct::Node("5"));
 
-
+    // test edge for most cases
     edge_ptr e0(new data_struct::Edge(a0,a1,5));
     edge_ptr e1(new data_struct::Edge(a0,a3,2));
     edge_ptr e2(new data_struct::Edge(a3,a1,2));
@@ -22,8 +23,21 @@ int main(){
     edge_ptr e10(new data_struct::Edge(a3,a4,0));
 
 
+    // egde for max flow testing
+    edge_ptr edge0(new data_struct::Edge(a0,a1,16));
+    edge_ptr edge1(new data_struct::Edge(a0,a2,13));
+    edge_ptr edge2(new data_struct::Edge(a2,a1,4));
+    edge_ptr edge3(new data_struct::Edge(a1,a2,10));
+    edge_ptr edge4(new data_struct::Edge(a1,a3,12));
+    edge_ptr edge5(new data_struct::Edge(a3,a2,9));
+    edge_ptr edge6(new data_struct::Edge(a2,a4,14));
+    edge_ptr edge7(new data_struct::Edge(a4,a3,7));
+    edge_ptr edge8(new data_struct::Edge(a3,a5,20));
+    edge_ptr edge9(new data_struct::Edge(a4,a5,4));
+
+
     //negative cycle one for BellManFord
-    node_ptr a5(new data_struct::Node("5"));
+//    node_ptr a5(new data_struct::Node("5"));
     node_ptr a6(new data_struct::Node("6"));
     node_ptr a7(new data_struct::Node("7"));
     edge_ptr e11(new data_struct::Edge(a5,a6,3));
@@ -311,6 +325,35 @@ int main(){
     std::cout << E->get_prev() << std::endl;
     std::cout << F->get_prev() << std::endl;
     std::cout << G->get_prev() << std::endl;
+
+    std::shared_ptr<algo::EdmondsKarp> max_flow(new algo::EdmondsKarp(DIRECTED));
+    max_flow->add_edge(edge0);
+    max_flow->add_edge(edge1);
+    max_flow->add_edge(edge2);
+    max_flow->add_edge(edge3);
+    max_flow->add_edge(edge4);
+    max_flow->add_edge(edge5);
+    max_flow->add_edge(edge6);
+    max_flow->add_edge(edge7);
+    max_flow->add_edge(edge8);
+    max_flow->add_edge(edge9);
+    std::vector<edge_ptr> rv2 = max_flow->generate_max_flow(a0,a5);
+
+    for(edge_ptr e: rv2){
+        std::cout<< e;
+        std::cout << "\n";
+    }
+    std::cout << max_flow->get_max_flow() << std::endl;
+
+
+    max_flow->set_judge(UNDIRECTED);
+    std::vector<edge_ptr> rv3 = max_flow->generate_max_flow(a0,a5);
+
+    for(edge_ptr e: rv3){
+        std::cout<< e;
+        std::cout << "\n";
+    }
+    std::cout << max_flow->get_max_flow() << std::endl;
 
     return 0;
 }
