@@ -43,7 +43,7 @@ bool algo::EdmondsKarp::bfs(std::shared_ptr <data_struct::Node> src,
         visited[node] = false;
     }
     queue.push(src);
-    typename std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>::iterator i;
+    std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>::iterator i;
     std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>> adj_list;
     if(judge.compare(DIRECTED) == 0){
         adj_list = directed_adj_list;
@@ -98,8 +98,8 @@ std::vector<std::shared_ptr<data_struct::Edge>> algo::EdmondsKarp::generate_max_
         }
         this->reset();
     }
-    typename  std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>>::iterator i;
-    typename std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>::iterator j;
+    std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>>::iterator i;
+    std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>::iterator j;
     std::vector<std::shared_ptr<data_struct::Edge>> rv;
     for(i = (*adj_list).begin();i!=(*adj_list).end();++i){
         std::shared_ptr<data_struct::Node> cur = i->first;
@@ -109,10 +109,11 @@ std::vector<std::shared_ptr<data_struct::Edge>> algo::EdmondsKarp::generate_max_
             int original = j->second.unchanged_weight;
             bool undo = j->second.undo;
             if (!undo && original>value){
-                std::shared_ptr<data_struct::Edge> e(new data_struct::Edge(cur,next,j->second.unchanged_weight - j->second.weight));
+                std::shared_ptr<data_struct::Edge> e(new data_struct::Edge(cur,next,original-value));
                 rv.push_back(e);
             }
         }
     }
+    this->reset();
     return rv;
 }

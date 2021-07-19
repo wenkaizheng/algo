@@ -33,21 +33,19 @@ std::vector<std::shared_ptr<data_struct::Path>> algo::KSP::k_shortest_path(std::
         std::shared_ptr<data_struct::Path> cur = pq.top();
         pq.pop();
         std::shared_ptr<data_struct::Node> s = nullptr;
-        if (cur == p){
-            s = src;
-        }else{
-            s = cur->get_last_one();
-            if (s == dst){
-                rv.push_back(cur);
-                k -= 1;
-                if (k == 0){
-                    break;
-                }else{
-                    continue;
-                }
+
+        s = cur->get_last_one();
+        if (s == dst){
+            rv.push_back(cur);
+            k -= 1;
+            if (k == 0){
+                break;
+            }else{
+                continue;
             }
         }
-        typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
+
+        std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
         std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> adj_list;
         if (judge.compare(DIRECTED) == 0){
             adj_list = directed_adj_list;

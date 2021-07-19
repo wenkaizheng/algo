@@ -159,10 +159,10 @@ namespace algo{
     public:
         Kruskal(std::string s);
         int get_mst_value();
-        std::shared_ptr<data_struct::Node> get_ancestor(std::shared_ptr<data_struct::Node> node);
         std::vector<std::shared_ptr<data_struct::Edge>> generate_mst();
 
     private:
+        std::shared_ptr<data_struct::Node> get_ancestor(std::shared_ptr<data_struct::Node> node);
         int mst_wt;
     };
 
@@ -178,20 +178,18 @@ namespace algo{
     public:
         EdmondsKarp(std::string s);
         void set_judge(std::string j);
-        void reset();
         void add_edge(std::shared_ptr<data_struct::Edge> edge);
         int get_max_flow();
         std::vector<std::shared_ptr<data_struct::Edge>> generate_max_flow(std::shared_ptr<data_struct::Node> src, std::shared_ptr<data_struct::Node> dst);
-        bool bfs(std::shared_ptr <data_struct::Node> src,
-                 std::shared_ptr <data_struct::Node> dst);
     private:
         int max_flow;
         std::string judge;
         std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>> directed_adj_list;
         std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>> undirected_adj_list;
-        std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>> directed_adj_list_copy;
-        std::unordered_map<std::shared_ptr<data_struct::Node>, std::unordered_map<std::shared_ptr<data_struct::Node>,MaxFlowEdgeObject>> undirected_adj_list_copy;
         std::vector<std::shared_ptr<data_struct::Node>> node_list;
+        bool bfs(std::shared_ptr <data_struct::Node> src,
+                 std::shared_ptr <data_struct::Node> dst);
+        void reset();
     };
 
 }

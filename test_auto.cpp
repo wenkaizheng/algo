@@ -355,5 +355,12 @@ int main(){
     }
     std::cout << max_flow->get_max_flow() << std::endl;
 
+    std::cout << a0->get_prev() << std::endl;
+    std::cout << a1->get_prev() << std::endl;
+    std::cout << a2->get_prev() << std::endl;
+    std::cout << a3->get_prev() << std::endl;
+    std::cout << a4->get_prev() << std::endl;
+    std::cout << a5->get_prev() << std::endl;
+
     return 0;
 }

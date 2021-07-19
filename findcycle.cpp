@@ -24,7 +24,7 @@ bool algo::FindCycle::check_cycle_directed(std::shared_ptr <data_struct::Node> n
                                            std::unordered_map<std::shared_ptr<data_struct::Node>, bool> &rec_stack) {
     visited[node] = true;
     rec_stack[node] = true;
-    typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
+    std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
     for (i = directed_adj_list[node].begin(); i != directed_adj_list[node].end(); ++i)
     {
         std::shared_ptr<data_struct::Node> d = i->first;
@@ -59,7 +59,7 @@ bool algo::FindCycle::check_cycle_undirected(std::shared_ptr <data_struct::Node>
                                              std::unordered_map<std::shared_ptr<data_struct::Node>, bool> &visited,
                                              std::shared_ptr <data_struct::Node> parent){
     visited[node] = true;
-    typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
+    std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
     for (i = undirected_adj_list[node].begin(); i != undirected_adj_list[node].end(); ++i)
     {
         std::shared_ptr<data_struct::Node> d = i->first;

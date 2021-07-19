@@ -32,7 +32,7 @@ std::vector<std::shared_ptr<data_struct::Edge>> algo::Prim::generate_mst(){
             continue;
         }
         visited[s] = true;
-        typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
+        std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
         for (i = undirected_adj_list[s].begin(); i != undirected_adj_list[s].end(); ++i)
         {
             std::shared_ptr<data_struct::Node> d = i->first;

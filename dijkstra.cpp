@@ -24,7 +24,7 @@ std::shared_ptr<data_struct::Path> algo::Dijkstra::shortest_path(std::shared_ptr
         if (s == dst){
             break;
         }
-        typename std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
+        std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>::iterator i;
         std::unordered_map<std::shared_ptr<data_struct::Node>,std::vector<std::pair<std::shared_ptr<data_struct::Node>,int>>> adj_list;
         if(judge.compare(DIRECTED) == 0){
             adj_list = directed_adj_list;
